@@ -35,6 +35,11 @@
  */
 - (UIColor *)tableView:(UITableView *)tableView backgroundColorForMoreOptionButtonForRowAtIndexPath:(NSIndexPath *)indexPath;
 
+/*
+ * If not implemented or returning nil the "More" button will have the default font
+ */
+- (UIFont *)tableView:(UITableView *)tableView titleFontForMoreOptionButtonForRowAtIndexPath:(NSIndexPath *)indexPath;
+
 // "Delete button"
 
 /*
@@ -46,5 +51,10 @@
  * If not implemented or returning nil the "Delete" button will have the default titleColor.
  */
 - (UIColor *)tableView:(UITableView *)tableView titleColorForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath;
+
+/*
+ * If not implemented or returning nil the "Delete" button will have the default font
+ */
+- (UIFont *)tableView:(UITableView *)tableView titleFontForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

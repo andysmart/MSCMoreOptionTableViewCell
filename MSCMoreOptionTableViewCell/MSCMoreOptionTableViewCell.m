@@ -84,17 +84,25 @@
                             }
                         }
                         
-                        // Try to get "Delete" titleColor from Delegate
-                        if ([self.delegate respondsToSelector:@selector(tableView:titleColorForDeleteConfirmationButtonForRowAtIndexPath:)]) {
+                        // Try to get "Delete" titleColor and font from Delegate
+                        if ([self.delegate respondsToSelector:@selector(tableView:titleColorForDeleteConfirmationButtonForRowAtIndexPath:)] ||
+                            [self.delegate respondsToSelector:@selector(tableView:titleFontForDeleteConfirmationButtonForRowAtIndexPath:)]) {
+                            
                             UIButton *deleteConfirmationButton = [self deleteButtonFromDeleteConfirmationView:deleteConfirmationView];
                             if (deleteConfirmationButton) {
                                 UIColor *deleteButtonTitleColor = [self.delegate tableView:tableView titleColorForDeleteConfirmationButtonForRowAtIndexPath:[tableView indexPathForCell:self]];
-                                if (deleteButtonTitleColor) {
-                                    for (UIView *label in deleteConfirmationButton.subviews) {
-                                        if ([label isKindOfClass:[UILabel class]]) {
+                                UIFont *font = [self.delegate tableView:tableView titleFontForDeleteConfirmationButtonForRowAtIndexPath:[tableView indexPathForCell:self]];
+                                
+                                for (UIView *label in deleteConfirmationButton.subviews) {
+                                    if ([label isKindOfClass:[UILabel class]]) {
+                                        if (deleteButtonTitleColor) {
                                             [(UILabel*)label setTextColor:deleteButtonTitleColor];
-                                            break;
                                         }
+                                        if (font) {
+                                            [(UILabel*)label setFont:font];
+                                        }
+                                        
+                                        break;
                                     }
                                 }
                             }
@@ -122,6 +130,12 @@
                                 titleColor = [UIColor whiteColor];
                             }
                             [self.moreOptionButton setTitleColor:titleColor forState:UIControlStateNormal];
+                            
+                            //Try to get "More" font from delegate
+                            if ([self.delegate respondsToSelector:@selector(tableView:titleFontForMoreOptionButtonForRowAtIndexPath:)]) {
+                                UIFont *font = [self.delegate tableView:tableView titleFontForMoreOptionButtonForRowAtIndexPath:[tableView indexPathForCell:self]];
+                                [self.moreOptionButton.titleLabel setFont:font];
+                            }
                             
                             // Try to get "More" backgroundColor from delegate
                             UIColor *backgroundColor = nil;
