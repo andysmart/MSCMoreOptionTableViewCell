@@ -47,6 +47,18 @@
     
     cell.textLabel.text = @"Cell";
     
+    UIButton *more = [UIButton buttonWithType:UIButtonTypeCustom];
+    more.backgroundColor = [UIColor grayColor];
+    [more setTitle:NSLocalizedString(@"More", nil) forState:UIControlStateNormal];
+    [more setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    UIButton *extra = [UIButton buttonWithType:UIButtonTypeCustom];
+    extra.backgroundColor = [UIColor lightGrayColor];
+    [extra setTitle:NSLocalizedString(@"Extra", nil) forState:UIControlStateNormal];
+    [extra setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    cell.rightActionButtons = @[more, extra];
+    
     return cell;
 }
 
@@ -87,13 +99,9 @@
 #pragma mark - MSCMoreOptionTableViewCellDelegate
 ////////////////////////////////////////////////////////////////////////
 
-- (void)tableView:(UITableView *)tableView moreOptionButtonPressedInRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Called when "MORE" button is pushed.
-    NSLog(@"MORE button pushed in row at: %@", indexPath.description);
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForMoreOptionButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return @"More";
+- (void)tableView:(UITableView *)tableView actionButtonAtIndex:(NSInteger)index pressedAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"Button pressed at index: %ld indexPath: %@", (long)index, indexPath);
 }
 
 @end

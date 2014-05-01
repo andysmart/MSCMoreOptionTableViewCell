@@ -11,5 +11,6 @@
 @interface MSCMoreOptionTableViewCell : UITableViewCell
 
 @property (nonatomic, weak) id<MSCMoreOptionTableViewCellDelegate> delegate;
+@property (nonatomic, strong) NSArray *rightActionButtons;
 
 @end

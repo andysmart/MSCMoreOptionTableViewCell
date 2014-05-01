@@ -9,36 +9,9 @@
 @protocol MSCMoreOptionTableViewCellDelegate<NSObject>
 
 @required
-- (void)tableView:(UITableView *)tableView moreOptionButtonPressedInRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)tableView:(UITableView *)tableView actionButtonAtIndex:(NSInteger)index pressedAtIndexPath:(NSIndexPath *)indexPath;
 
 @optional
-
-// "More button"
-
-/*
- * If not implemented or returning nil the "More" button will not be created and the
- * cell will act like a common UITableViewCell.
- *
- * The "More" button also supports multiline titles.
- */
-- (NSString *)tableView:(UITableView *)tableView titleForMoreOptionButtonForRowAtIndexPath:(NSIndexPath *)indexPath;
-
-/*
- * If not implemented or returning nil the "More" button will have [UIColor whiteColor]
- * as titleColor.
- */
-- (UIColor *)tableView:(UITableView *)tableView titleColorForMoreOptionButtonForRowAtIndexPath:(NSIndexPath *)indexPath;
-
-/*
- * If not implemented or returning nil the "More" button will have [UIColor lightGrayColor]
- * as backgroundColor.
- */
-- (UIColor *)tableView:(UITableView *)tableView backgroundColorForMoreOptionButtonForRowAtIndexPath:(NSIndexPath *)indexPath;
-
-/*
- * If not implemented or returning nil the "More" button will have the default font
- */
-- (UIFont *)tableView:(UITableView *)tableView titleFontForMoreOptionButtonForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 // "Delete button"
 
